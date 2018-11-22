@@ -1,0 +1,14 @@
+{
+  "name": "mod-cli",
+  "version": "0.1.0",
+  "description": "mod-cli",
+  "main": "index.js",
+  "bin": {
+    "mod": "./index.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
