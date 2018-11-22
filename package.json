@@ -1,7 +1,7 @@
 {
-  "name": "mod-cli",
-  "version": "0.1.0",
-  "description": "mod-cli",
+  "name": "@mod-cli/mod-cli",
+  "version": "1.0.0",
+  "description": "",
   "main": "index.js",
   "bin": {
     "mod": "./index.js"
@@ -9,6 +9,14 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jonroby/mod-cli.git"
+  },
   "author": "",
-  "license": "ISC"
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jonroby/mod-cli/issues"
+  },
+  "homepage": "https://github.com/jonroby/mod-cli#readme"
 }
