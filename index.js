@@ -6,7 +6,6 @@ const { readFile, writeToFile, compose } = require("./helpers");
 
 const plugin = readFile(path.resolve(process.cwd(), "./.mod"));
 
-// if file exists check here.
 const { defaults, mods, config } = require(path.resolve(
   process.cwd(),
   `./node_modules/${plugin}`
@@ -41,6 +40,6 @@ const main = () =>
     .map(getFile)
     .map(getMod)
     .map(modifyFile)
-    .forEach(i => console.log(i));
+    .forEach(writeToFile);
 
 main();
