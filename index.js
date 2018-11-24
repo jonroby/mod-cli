@@ -1,21 +1,22 @@
 #!/usr/bin/env node
 
+const fs = require('fs');
 const process = require("process");
 const path = require("path");
-const { readFile, writeToFile, compose } = require("./helpers");
+const { fileExists, writeToFile, compose } = require("./src/helpers");
 
-const plugin = readFile(path.resolve(process.cwd(), "./.mod"));
-
-const { defaults, mods, config } = require(path.resolve(
-  process.cwd(),
-  `./node_modules/${plugin}`
-));
+const cwd = process.cwd();
+const pathToModConfig = path.resolve(cwd, "./.mod");
+const pluginName = fileExists(pathToModConfig, 'readFile');
+const pluginNameCleaned = pluginName.split('\n').join('');
+const pathToPlugin = path.resolve(cwd, 'node_modules', '@mod-cli', pluginNameCleaned, 'index.js');
+const { defaults, mods, config } = fileExists(pathToPlugin, 'require');
 
 const getCommands = () => process.argv.slice(2);
 
 const getFile = task => ({
   ...task,
-  filestring: readFile(task.filepath)
+  filestring: fileExists(task.filepath, 'readFile')
 });
 
 const getMod = task =>
@@ -36,7 +37,7 @@ const main = () =>
   compose(
     getCommands,
     config.commands
-  )
+  )()
     .map(getFile)
     .map(getMod)
     .map(modifyFile)
