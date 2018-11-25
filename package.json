@@ -13,17 +13,17 @@
     "url": "https://github.com/jonroby/mod-cli/issues"
   },
   "homepage": "https://github.com/jonroby/mod-cli#readme",
+  "engines" : { 
+    "node" : ">=8.0.0 <11.0.0" 
+  },
   "bin": {
-    "mod": "./index.js"
+    "mod": "./src/index.js"
   },
   "scripts": {
-    "build": "babel src/ -d lib/",
-    "prepublish": "npm run build",
-    "fmt": "prettier src/**/*.js --write",
     "test": "jest"
   },
   "jest": {
-    "collectCoverage": false,
+    "collectCoverage": true,
     "collectCoverageFrom": [
       "src/**/*.{js,jsx}"
     ]
