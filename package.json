@@ -23,7 +23,7 @@
     "test": "jest"
   },
   "jest": {
-    "collectCoverage": true,
+    "collectCoverage": false,
     "collectCoverageFrom": [
       "src/**/*.{js,jsx}"
     ]
