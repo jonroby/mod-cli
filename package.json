@@ -14,7 +14,7 @@
   },
   "homepage": "https://github.com/jonroby/mod-cli#readme",
   "bin": {
-    "mod": "./index.js"
+    "mod": "./src/index.js"
   },
   "scripts": {
     "build": "babel src/ -d lib/",
@@ -23,7 +23,7 @@
     "test": "jest"
   },
   "jest": {
-    "collectCoverage": false,
+    "collectCoverage": true,
     "collectCoverageFrom": [
       "src/**/*.{js,jsx}"
     ]
