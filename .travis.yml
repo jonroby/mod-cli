@@ -3,7 +3,6 @@ language: node_js
 env:
   global:
     - CC_TEST_REPORTER_ID=f0597bf4a6a55354b34444a46095ca48f5df1d815520e2aa2c72272f39bd6553
-	
 
 node_js:
   - stable
