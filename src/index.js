@@ -9,7 +9,7 @@ const cwd = process.cwd();
 const pathToModConfig = path.resolve(cwd, "./.mod");
 const pluginName = fileExists(pathToModConfig, 'readFile');
 const pluginNameCleaned = pluginName.split('\n').join('');
-const pathToPlugin = path.resolve(cwd, 'node_modules', '@mod-cli', pluginNameCleaned, 'index.js');
+const pathToPlugin = path.resolve(cwd, 'node_modules', pluginNameCleaned, 'index.js');
 const { defaults, mods, config } = fileExists(pathToPlugin, 'require');
 
 const getCommands = () => process.argv.slice(2);
