@@ -20,11 +20,15 @@
     "mod": "./src/index.js"
   },
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "prettier": "prettier --write ./src/**/*.js"
   },
   "devDependencies": {
+    "eslint": "^5.9.0",
+    "eslint-config-prettier": "^3.3.0",
+    "husky": "^1.2.0",
     "jest": "^23.6.0",
-    "prettier": "^1.15.2"
+    "prettier": "1.15.2"
   },
   "dependencies": {
     "chalk": "^2.4.1",
