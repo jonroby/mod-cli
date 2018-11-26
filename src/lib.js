@@ -1,4 +1,6 @@
-const { fileExists } = require('./helpers');
+const shell = require("shelljs");
+const chalk = require("chalk");
+const { fileExists, removeDotFromFilepath } = require('./helpers');
 
 const getFile = task => ({
   ...task,
@@ -10,14 +12,22 @@ const getMod = (mods) => task => task.filestring
       : task;
 
 const modifyFile = (parser, defaults) => task =>
-  task.filestring
-    ? {
+      task.filestring
+      ? {
         ...task,
         filestring: parser(task.filestring, task.mod)
       }
-    : {
+      : {
         ...task,
         filestring: defaults[task.default](task.data)
-    };
+      };
 
-module.exports = { getFile, getMod, modifyFile };
+const printMods = root => f => {
+  // TODO: Add logic for modifications, new, deleting, etc. 
+  const type = chalk.greenBright("modified");
+  const file = `${root}\/${removeDotFromFilepath(f)}`;
+  shell.echo(`    ${type} ${file}`);
+  return f;
+}
+
+module.exports = { getFile, getMod, modifyFile, printMods };

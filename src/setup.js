@@ -13,6 +13,7 @@ const setup = () => {
     pluginNameCleaned,
     'index.js'
   );
+
   return fileExists(pathToPlugin, 'require');
 }
 
