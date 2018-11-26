@@ -19,6 +19,11 @@
   "bin": {
     "mod": "./src/index.js"
   },
+  "husky": {
+    "hooks": {
+      "pre-push": "npm run test && npm run eslint && npm run prettier"
+    }
+  },
   "scripts": {
     "test": "jest",
     "prettier": "prettier --write \"./src/**/*.js\"",
