@@ -4,6 +4,6 @@ jest.mock('../helpers/fileExists');
 
 describe("main", () => {
   test("main returns tasks", () => {
-    const result = main();
+    // const result = main();
   });
 });
