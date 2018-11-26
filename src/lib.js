@@ -11,18 +11,16 @@ const getMod = (mods) => task => task.filestring
       ? { ...task, mod: mods[task.mod](task.data) }
       : task;
 
-const modifyFile = (parser, defaults) => task => {
-  return task.filestring
-    ? {
+const modifyFile = (parser, defaults) => task =>
+      task.filestring
+      ? {
         ...task,
         filestring: parser(task.filestring, task.mod)
       }
-    : {
+      : {
         ...task,
         filestring: defaults[task.default](task.data)
-    };
-  
-}
+      };
 
 const printMods = root => f => {
   // TODO: Add logic for modifications, new, deleting, etc. 

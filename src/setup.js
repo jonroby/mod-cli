@@ -1,5 +1,4 @@
 const path = require("path");
-const logObject = require('../../../logObj');
 
 const { fileExists } = require("./helpers");
 
@@ -29,7 +28,6 @@ const setup = () => {
     'index.js'
   );
   const obj = fileExists(pathToPlugin, 'require');
-  console.log(logObject(obj));
 
   return fileExists(pathToPlugin, 'require');
 }

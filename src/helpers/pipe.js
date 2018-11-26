@@ -7,5 +7,4 @@ const pipe = (...xs) => {
     : undefined;
 };
 
-
 module.exports = pipe;
