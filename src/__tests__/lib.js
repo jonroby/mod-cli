@@ -1,6 +1,11 @@
-const { getFile, getMod, modifyFile } = require("../lib");
+const { getFile, getMod, modifyFile, printMods } = require("../lib");
 
-jest.mock('../helpers/fileExists'); 
+jest.mock('shelljs', () => ({
+  echo: jest.fn()
+}));
+jest.mock('../helpers/fileExists');
+
+const shell = require('shelljs')
 
 describe("lib", () => {
   test("getFile returns task object back with filestring", () => {
@@ -36,5 +41,19 @@ describe("lib", () => {
     const defaults = { d: () => 'default' }
     const result = modifyFile(parser, defaults)(task);
     expect(result).toEqual({ a: 'a', filestring: 'default', default: 'd' });
+  });
+
+  test("printMods echoes modified file", () => {
+    const root = "root-folder";
+    const filepath = './path/to/file.js';
+    printMods(root)({ filepath });
+    expect(shell.echo).toHaveBeenCalledTimes(1);
+  });
+
+  test("printMods return original file", () => {
+    const root = "root-folder";
+    const filepath = './path/to/file.js';
+    const result = printMods(root)({ filepath });
+    expect(result).toEqual({ filepath });
   });
 });

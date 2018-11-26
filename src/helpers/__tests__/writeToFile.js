@@ -16,4 +16,9 @@ describe("writeToFile", () => {
       expect(args).toEqual([filepath, filestring, 'utf8'])
     })
   });
+
+  test("returns original argument", () => {
+    const result = writeToFile(fileData);
+    expect(result).toEqual(fileData);
+  });
 });

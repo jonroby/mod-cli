@@ -1,4 +1,4 @@
-const compose = (...xs) => {
+const pipe = (...xs) => {
   return !(xs.length === 0)
     ? x =>
         xs.reduce((prev, curr) => {
@@ -8,4 +8,4 @@ const compose = (...xs) => {
 };
 
 
-module.exports = compose;
+module.exports = pipe;

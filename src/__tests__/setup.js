@@ -3,8 +3,8 @@ const setup = require("../setup");
 jest.mock('path');
 jest.mock('../helpers/fileExists'); 
 
-describe.only("setup", () => {
-  test.only("setup return config object if everything is successful", () => {
+describe("setup", () => {
+  test("setup return config object if everything is successful", () => {
     const realProcess = process;
 
     global.process = {
