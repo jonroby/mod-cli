@@ -13,8 +13,8 @@
     "url": "https://github.com/jonroby/mod-cli/issues"
   },
   "homepage": "https://github.com/jonroby/mod-cli#readme",
-  "engines" : { 
-    "node" : ">=8.0.0 <11.0.0" 
+  "engines": {
+    "node": ">=8.0.0 <11.0.0"
   },
   "bin": {
     "mod": "./src/index.js"

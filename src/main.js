@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 
 const { fileExists, writeToFile, compose } = require("./helpers");
+
 const { setup } = require("./setup");
-const { getFile, getMod, modifyFile } = require("./lib");
 
 const { defaults, mods, config } = setup();
 
@@ -33,7 +33,7 @@ const main = () =>
     config.commands
   )()
     .map(getFile)
-    .map(getMod(mods))
+    .map(getMod)
     .map(modifyFile(parser, defaults))
     .forEach(writeToFile);
 
