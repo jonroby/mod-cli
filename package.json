@@ -21,7 +21,7 @@
   },
   "scripts": {
     "test": "jest",
-    "prettier": "prettier --write ./src/**/*.js"
+    "prettier": "prettier --write \"./src/**/*.js\""
   },
   "devDependencies": {
     "eslint": "^5.9.0",

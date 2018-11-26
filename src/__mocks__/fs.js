@@ -1,4 +1,4 @@
-const fs = jest.genMockFromModule('fs');
+const fs = jest.genMockFromModule("fs");
 
 let mockFiles = Object.create(null);
 function __setMockFiles(files) {

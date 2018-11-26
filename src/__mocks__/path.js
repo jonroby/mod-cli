@@ -1,5 +1,5 @@
-const path = jest.genMockFromModule('path');
+const path = jest.genMockFromModule("path");
 
-path.resolve = () => '';
+path.resolve = () => "";
 
 module.exports = path;

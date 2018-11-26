@@ -1,6 +1,6 @@
 const main = require("../main");
 
-jest.mock('../helpers/fileExists');
+jest.mock("../helpers/fileExists");
 
 describe("main", () => {
   test("main returns tasks", () => {
