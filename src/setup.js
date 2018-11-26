@@ -27,7 +27,6 @@ const setup = () => {
     pluginNameCleaned,
     'index.js'
   );
-  const obj = fileExists(pathToPlugin, 'require');
 
   return fileExists(pathToPlugin, 'require');
 }
