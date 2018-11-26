@@ -23,14 +23,14 @@ describe("lib", () => {
     expect(result).toEqual(task);
   });
 
-  test("getFile returns task object back with filestring", () => {
+  test("modifyFile returns task object back with filestring", () => {
     const task = { a: 'a', filestring: 'exists' }
     const parser = () => 'modification';
     const result = modifyFile(parser)(task);
     expect(result).toEqual({ a: 'a', filestring: 'modification' });
   });
 
-  test("getFile returns task object back with filestring", () => {
+  test("modifyFile returns task object back with filestring", () => {
     const task = { a: 'a', filestring: undefined, default: 'd' }
     const parser = () => 'modification';
     const defaults = { d: () => 'default' }

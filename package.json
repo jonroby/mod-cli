@@ -22,12 +22,6 @@
   "scripts": {
     "test": "jest"
   },
-  "jest": {
-    "collectCoverage": true,
-    "collectCoverageFrom": [
-      "src/**/*.{js,jsx}"
-    ]
-  },
   "devDependencies": {
     "jest": "^23.6.0",
     "prettier": "^1.15.2"
