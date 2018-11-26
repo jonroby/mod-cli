@@ -1,31 +1,27 @@
 #!/usr/bin/env node
 
-const { fileExists, writeToFile, compose } = require("./helpers");
-const { setup } = require("./setup");
+const shell = require("shelljs");
+const chalk = require("chalk");
+const setup = require("./setup");
 const { getFile, getMod, modifyFile } = require("./lib");
+const { fileExists, writeToFile, compose } = require("./helpers");
 
 const { defaults, mods, config } = setup();
 
-const getCommands = () => process.argv.slice(2);
+const getCommands = () => {
+  const args = process.argv;
 
-// const getFile = task => ({
-//   ...task,
-//   filestring: fileExists(task.filepath, "readFile")
-// });
+  return args.slice(2);
+};
 
-// const getMod = task =>
-//   task.filestring ? { ...task, mod: mods[task.mod](task.data) } : task;
-
-// const modifyFile = task =>
-//   task.filestring
-//     ? {
-//         ...task,
-//         filestring: config.parser(task.filestring, task.mod)
-//       }
-//     : {
-//         ...task,
-//         filestring: defaults[task.default](task.data)
-//       };
+// temp fix to display files with root
+const cwd = process.cwd().split("/");
+const root = cwd[cwd.length - 1];
+const removeDot = f =>
+  f.filepath
+    .split("/")
+    .filter(i => i !== ".")
+    .join("/");
 
 const main = () =>
   compose(
@@ -34,9 +30,12 @@ const main = () =>
   )()
     .map(getFile)
     .map(getMod(mods))
-    .map(modifyFile(parser, defaults))
-    .forEach(writeToFile);
+    .map(modifyFile(config.parser, defaults))
+    .map(writeToFile)
+    .forEach(f =>
+      shell.echo(`    ${chalk.greenBright("modified")} ${root}/${removeDot(f)}`)
+    );
 
-// main();
+main();
 
-module.exports = main;
+// module.exports = main;
