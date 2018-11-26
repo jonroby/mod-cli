@@ -7,7 +7,7 @@ function __setMockFiles(files) {
 
 const existsSync = path => mockFiles[path];
 const readFileSync = path => mockFiles[path];
-const writeFileSync = jest.fn(({ filestring, filepath }) => {});
+const writeFileSync = jest.fn();
 
 fs.__setMockFiles = __setMockFiles;
 fs.existsSync = existsSync;

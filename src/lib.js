@@ -24,7 +24,7 @@ const modifyFile = (parser, defaults) => task =>
 const printMods = root => f => {
   // TODO: Add logic for modifications, new, deleting, etc.
   const type = chalk.greenBright("modified");
-  const file = `${root}\/${removeDotFromFilepath(f)}`;
+  const file = `${root}/${removeDotFromFilepath(f)}`;
   shell.echo(`    ${type} ${file}`);
   return f;
 };

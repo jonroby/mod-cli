@@ -3,7 +3,6 @@ const { getFile, getMod, modifyFile, printMods } = require("./lib");
 const {
   getCommands,
   getFileroot,
-  fileExists,
   writeToFile,
   pipe,
   map,

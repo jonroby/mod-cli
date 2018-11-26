@@ -10,7 +10,7 @@ describe("writeToFile", () => {
   const fileData = { filepath, filestring };
 
   test("calls fs.writeFileSync with passed arguments", () => {
-    const result = writeToFile(fileData);
+    writeToFile(fileData);
     expect(fs.writeFileSync).toHaveBeenCalledTimes(1);
     fs.writeFileSync.mock.calls.forEach(args => {
       expect(args).toEqual([filepath, filestring, "utf8"]);
