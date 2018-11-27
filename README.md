@@ -54,9 +54,9 @@ to import into counter. Instead of doing this by hand, navigate to the CLI and
 then type and enter
 
 ```
-$ mod newAction Counter`
-`   modified with-redux-app/store.js
-`   modified with-redux-app/components/Counter.js
+$ mod newAction Counter
+    modified with-redux-app/store.js
+    modified with-redux-app/components/Counter.js
 ```
 
 This command generates an action and all the associated redux boilerplate,
