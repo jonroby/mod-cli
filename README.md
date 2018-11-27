@@ -24,7 +24,7 @@ and exporting.
 
 So to see how Mod CLI can help, clone the following repo and `cd` into it.
 
-`$ git clone https://github.com/jonroby/with-redux-app.git`
+`$ https://github.com/jonroby/mod-cli-example.git`
 
 It's just a nextjs example project.
 
