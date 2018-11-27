@@ -3,10 +3,9 @@ const { getFile, getMod, modifyFile, printMods } = require("./lib");
 const {
   getCommands,
   getFileroot,
-  fileExists,
   writeToFile,
   pipe,
-  map
+  map,
 } = require("./helpers");
 
 const { defaults, mods, config } = setup();
@@ -18,8 +17,12 @@ const main = pipe(
   map(getMod(mods)),
   map(modifyFile(config.parser, defaults)),
   map(writeToFile),
-  map(pipe(getFileroot, printMods)())
-)
+  map(
+    pipe(
+      getFileroot,
+      printMods
+    )()
+  )
+);
 
 module.exports = main;
-

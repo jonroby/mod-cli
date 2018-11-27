@@ -2,20 +2,18 @@ const fileExists = require("../fileExists");
 
 jest.mock("fs");
 
-const fs = require("fs");
-
 describe("fileExists", () => {
   const filepath = "./path/to/file.js";
   const filestring = "const meaningOfLife = 42;";
 
   const MOCK_FILE_INFO = {
-    [filepath]: filestring
+    [filepath]: filestring,
   };
 
   require("fs").__setMockFiles(MOCK_FILE_INFO);
 
   test("returns filestring if file exists and passed readFile", () => {
-    const result = fileExists(filepath, 'readFile');
+    const result = fileExists(filepath, "readFile");
     expect(result).toBe(filestring);
   });
 
@@ -25,15 +23,17 @@ describe("fileExists", () => {
   // });
 
   test("default error is thrown if filepath isn't found", () => {
-    const fn = () => {};
     const err = "./path/to/nonexistent/file.js doesn't exist.";
-    expect(() => fileExists("./path/to/nonexistent/file.js", 'require')).toThrow(err);
+    expect(() =>
+      fileExists("./path/to/nonexistent/file.js", "require")
+    ).toThrow(err);
   });
 
   test("user supplied error is thrown if filepath isn't found", () => {
-    const fn = () => {};
     const err =
       "No .mod file was found. Please add one to your root that includes the name of the mod-cli plugin you want to use.";
-    expect(() => fileExists("./path/to/nonexistent/file.js", 'require', err)).toThrow(err);
+    expect(() =>
+      fileExists("./path/to/nonexistent/file.js", "require", err)
+    ).toThrow(err);
   });
 });

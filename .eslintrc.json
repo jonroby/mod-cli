@@ -1,0 +1,11 @@
+{
+  "env": {
+    "node": 1,
+    "jest": true
+  },
+  "extends": ["eslint:recommended"],
+  "parserOptions": {
+    "ecmaVersion": 2018
+  },
+  "plugins": ["jest"]
+}
