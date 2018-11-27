@@ -21,15 +21,20 @@
   },
   "husky": {
     "hooks": {
+      "pre-commit": "npm run test && npm run eslint && npm run prettier",
       "pre-push": "npm run test && npm run eslint && npm run prettier"
     }
   },
   "scripts": {
     "test": "jest",
+    "eslint": "./node_modules/.bin/eslint \"./src/**/*.js\"",
     "prettier": "prettier --write \"./src/**/*.js\"",
-    "eslint": "./node_modules/.bin/eslint \"./src/**/*.js\""
+    "build": "./node_modules/.bin/babel src --out-dir dist/src --ignore \"src/**/__mocks__/*.js\",\"src/**/__tests__/*.js\" && cp package.json LICENSE dist",
+    "prepublish": "npm run test && npm run eslint && npm run prettier && npm run build"
   },
   "devDependencies": {
+    "@babel/cli": "^7.1.5",
+    "@babel/core": "^7.1.6",
     "eslint": "^5.9.0",
     "eslint-config-prettier": "^3.3.0",
     "eslint-plugin-jest": "^22.0.1",
