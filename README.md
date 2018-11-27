@@ -26,15 +26,10 @@ So to see how Mod CLI can help, clone the following repo and `cd` into it.
 
 `$ git clone https://github.com/jonroby/with-redux-app.git`
 
-It's just a nextjs example project. You can generate it yourself with
+It's just a nextjs example project.
 
-```
-$ npm install --save next react react-dom
-$ npx create-next-app --example with-redux with-redux-app
-```
-
-Next, you'll need Mod CLI. You can install it globally (or locally, but
-this requires an extra step not covered here).
+Next, you'll need Mod CLI. You can install it globally (or locally, though
+if you do, you'll prefix the `mod` commands with `npx`).
 
 `$ npm i -g @mod-cli/mod-cli`
 
@@ -58,10 +53,14 @@ So say you want to create a new action called `newAction`, which you'll then nee
 to import into counter. Instead of doing this by hand, navigate to the CLI and
 then type and enter
 
-`$ mod newAction Counter`
+```
+$ mod newAction Counter`
+`   modified with-redux-app/store.js
+`   modified with-redux-app/components/Counter.js
+```
 
-This will generate everything for you (excepting of course the actual logic you want
-carried out).
+This command generates an action and all the associated redux boilerplate,
+as well as then importing it into Counter.
 
 
 ```javascript
@@ -118,7 +117,4 @@ Or just the component (components are capitalized):
 Now these are not specific to Mod CLI. The command line options and updating
 behavior are specified by the plugin. Note that this is plugin is very limited
 and will break easily. I only include it here for illustrative purposes.
-
-
-
 
