@@ -62,7 +62,7 @@ This command generates all of the associated redux boilerplate:
 
 ![Screenshot](readme-images/mod-cli-diffs.png)
 
-All it takes to finish is to update your reducer `src/redux/reducers/counter.js`:
+To finish, update your reducer `src/redux/reducers/counter.js`:
 
 ```
 ...
@@ -72,11 +72,11 @@ All it takes to finish is to update your reducer `src/redux/reducers/counter.js`
 ```
 
 And then just below the decrement buttion, add an additional button with its
-onClick handler set to the newly generated `this.props.reset` function: 
+`onClick` handler set to the newly generated `this.props.reset` function: 
 ```
 ...
   <button onClick={this.props.decrement}>-</button>
-  <button onClick={this.props.reset}>0</button> // add 
+  <button onClick={this.props.reset}>0</button>
 ...
 ```
 
@@ -87,14 +87,16 @@ is provided.
 
 If you want to generate a file individually, you do so with the following:
 `$ mod -a <action>`
+
 `$ mod -c <Component>`
+
 `$ mod -r <reducer>`
 
 You can also string them together:
 `$ mod -a <action> -c <Component> -r <reducer>`
 
 If you use `<action>` as your first argument you can drop the `-a`.
-`$ mod -a <action> -c <Component> -r <reducer>`
+`$ mod <action> -c <Component> -r <reducer>`
 
 If your component and reducer have the same name (capitalization doesn't matter),
 you don't need to specify each (this was the command given in the preceding
@@ -102,13 +104,13 @@ section):
 `$ mod <action> <Component|reducer>`
 
 You might be wondering what happens if you don't have the component or the reducer.
-One will be generated for you and if you specified actions they will be added as
-well. Right now, you still have to add a generated reducer to the rootReducer; in
-an upcoming release this will also be done for you. In the mean time, you can
-`$ mod -t <reducer>`.
+Happily, one will be generated for you and if you specified actions they will be
+added as well. Right now, you still have to add a generated reducer to the
+rootReducer; in an upcoming release this will also be done for you. In the mean
+time, you can `$ mod -t <reducer>`.
 
 You also don't need to worry about adding duplicate actions, keys, case statements,
-whatever it might be (at least in most cases). The the `mod-react-plugin` won't
+whatever it might be (at least in most cases). The `mod-react-plugin` won't
 create duplicates (and on the road map is way to print this information out on
 completion when CLI is finished.)
 
