@@ -108,13 +108,13 @@ Most of the boilerplate in Redux involves actions or state (and in that order).
 More specifically, actions/action creators are added to components and reducers
 and not vice versa. Similarly, state is added to reducers and to components.
 
-With that in mind, this command will create the action constant and creator
-AND includes a constant into the reducer (it will also create the reducer and
+With that in mind, this command will create the action constant/creator
+AND includes the constant into the reducer (it will also create the reducer and
 reducer file if it doesn't exist):
 
 `$ mod -a <action> -r <reducer>`
 
-So too for components
+So too for components (action creator)
 
 `$ mod -a <action> -c <Component>`
 
@@ -132,9 +132,9 @@ need to specify each (this was the command given in the preceding section):
 
 `$ mod <action> <Component|reducer>`
 
-One other feature is tha that the plugin won't write over previous actions, keys,
-case statement, etc. (nor duplicating them). However, it won't print out that it
-didn't modify something (coming soon).
+One other feature is that the plugin won't write over previous actions, keys,
+case statements, etc. Nor does it duplicate them. However, it currently won't
+display this to you (coming soon).
 
 ### State
 
@@ -188,8 +188,8 @@ and brevity were weighted more heavily than consistency of behavior.
 
 ## TODO (Mod CLI)
 
-- [] Printing all modifications
-- [] Primary function signature from a list to map
-- [] Documentation
-- [] Execute commands anywhere in a project
-- [] A global package that executes local packages
+- [ ] Printing all modifications
+- [ ] Primary function signature from a list to map
+- [ ] Documentation
+- [ ] Execute commands anywhere in a project
+- [ ] A global package that executes local packages
