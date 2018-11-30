@@ -12,7 +12,7 @@ Whatever the reason, you're stuck rewriting code over... and over... and over ag
 
 Mod CLI is a tool that can help automate these tasks. You install it along with
 the plugin of your choice (or likely, you'll need to write your own). Then
-in the command line type `mod <your> <command> --with --whatever --options`.
+in the command line type `mod <your> <command> --with --options`.
 And on enter, all that repetitious code is added to your project!
 
 ## Example
@@ -23,13 +23,13 @@ To start clone the following repo.
 
 `cd` into it and `$ npm i && npm start`.
 
-It's a simple counter app with incrementing and decrementing. Now let's say you
+It's a simple counter app with incrementing and decrementing. Now let's say we
 want to add functionality for resetting the counter. If you've written any Redux,
 you know that this involves several steps including writing an action creator, an
-action constant, an action constant that is placed in a reducer's case statement,
-etc. And that doesn't even include all the importing and exporting. Of course,
-this is price you pay for Redux's simplicity, but wouldn't it be nice to avoid
-writing all of this (error prone) code?
+action constant that is placed in a reducer's case statement, etc. And that
+doesn't even include all the importing and exporting. Of course, this is price
+to pay for Redux's simplicity, but wouldn't it be nice to avoid writing all of
+this repetitious code?
 
 To help, install Mod CLI globally. 
 
@@ -41,7 +41,7 @@ desired file transformations. I've written one for this project.
 `$ npm i -S @mod-cli/mod-react-plugin`
 
 Write the plugin name in a `.mod` file so that Mod CLI will use this plugin
-to execute the transformations.
+to execute the transformations:
 
 `$ echo '@mod-cli/mod-react-plugin' > .mod`
 
@@ -55,12 +55,13 @@ $ mod reset Counter
     modified mod-react/src/redux/reducers/counter.js
 ```
 
-We can see that it made modifications to a number of files. Here are the changes.
+We can see that it made modifications to a number of files! It currently doesn't
+display which changes (coming soon), but here are the git diffs.
 
 ![Screenshot](readme-images/mod-cli-diffs.png)
 
-So to create our reset functionality we just need to update our reducer in
-`src/redux/reducers/counter.js`:
+All of the boilerplate has been added! So all we have to do to create our reset
+functionality is to update our reducer in `src/redux/reducers/counter.js`:
 
 ```
 ...
@@ -69,7 +70,7 @@ So to create our reset functionality we just need to update our reducer in
 ...
 ```
 
-And then in `src/components/Counter.js`, below the decrement buttion, add an
+And then in `src/components/Counter.js`, below the decrement button, add a
 button with its `onClick` handler set to the newly generated `reset` function,
 which is already available from `this.props`.
 ```
@@ -79,56 +80,68 @@ which is already available from `this.props`.
 ...
 ```
 
-Check it out in the browser!
+That's it! Check it out in the browser.
 
 ## Mod React (Redux)
 
 ### Individual commands
 
-To create the action constant and action creators
+To create an action constant and action creator
+
 `$ mod -a <action>`
 
 To generate a new component file with a component
+
 `$ mod -c <Component>`
 
 To generate a reducer file with a reducer
+
 `$ mod -r <reducer>`
 
 To add a reducer to the rootReducer
+
 `$ mod -t <reducer>`
 
 ### Actions
 
-Most of the boilerplate in Redux involves actions. So `-a` when used with those
-behave a little differently.
+Most of the boilerplate in Redux involves actions or state (and in that order).
+More specifically, actions/action creators are added to components and reducers
+and not vice versa. Similarly, state is added to reducers and to components.
 
-This command will create the action constant and creator AND includes the
-relevant one into the reducer:
+With that in mind, this command will create the action constant and creator,
+AND includes constant into the reducer (it will also create the reducer and
+reducer file if it doesn't ):
+
 `$ mod -a <action> -r <reducer>`
 
-Similarly for components
+So too for components
+
 `$ mod -a <action> -c <Component>`
 
-And you can do all at once
+And to do it all at once
+
 `$ mod -a <action> -c <Component> -r <reducer>`
 
-If you use `<action>` as your first argument you can drop the `-a`
+Two conveniences are that if you use `<action>` as your first argument you can
+drop the `-a`:
+
 `$ mod <action> -c <Component> -r <reducer>`
 
-If your component and reducer have the same name (capitalization doesn't matter),
-you don't need to specify each (this was the command given in the preceding
-section):
+The second, is that if your component and reducer have the same name, you don't
+need to specify each (this was the command given in the preceding section):
+
 `$ mod <action> <Component|reducer>`
 
-Note that you also don't need to worry about adding duplicate actions, keys, case statements,
-etc. The `mod-react-plugin` won't do this. However, it (currently) won't
-display this information to you.
+One other thing that the plugin takes care if is that you don't need to worry
+about writing over previous actions, keys, case statement, etc. (nor duplicating
+them). It's smart enough to never do this. However, it won't print out that it
+didn't modify something (coming soon).
 
 ### State
 
-Finally, you can also add state to your components and reducers (this is if your Component
-and reducer share the same name):
-`$ mod -s myKey myComponent`
+Along with actions, you can also add state to your components and reducers.
+
+`$ mod -s myKey -c myComponent`
 
 ```
 const mapStateToProps = state => ({
@@ -145,8 +158,6 @@ const mapStateToProps = state => ({
 ```
 
 You can also create a custom key: `$ mod -s my.custom.prop -c MyComponent`
-(leave off `-r <reducer>`, doing so will probably result in odd behavior)
-
 ```
 const mapStateToProps = state => ({
   prop: state.my.custom.prop
@@ -168,10 +179,19 @@ Just as with actions, you can add state to both the component and the reducer:
 If they share the same name
 `$ mod -s myKey <Component|reducer>`
 
+Unlike actions, you can't ever omit `-s` preceding a state key. And
+`$ -s stateKey` won't do anything.
+
+## Note
+
+Even though invoking all these arguments share a similar structure
+(`-a <action>`, `-s <stateKey>`, `-c <Component>`, `-r <reducer>`), their
+behavior is different. I do hope it's intuitive.
 
 ## TODO (Mod CLI)
 
-[] Printing all modifications
-[] Documentation
-[] Execute commands anywhere in a project
-[] A global package that executes local packages
+- [] Printing all modifications
+- [] Primary function signature from a list to map
+- [] Documentation
+- [] Execute commands anywhere in a project
+- [] A global package that executes local packages
