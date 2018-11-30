@@ -22,18 +22,18 @@ describe("fileExists", () => {
   //   expect(result).toBe(filestring);
   // });
 
-  test("default error is thrown if filepath isn't found", () => {
-    const err = "./path/to/nonexistent/file.js doesn't exist.";
-    expect(() =>
-      fileExists("./path/to/nonexistent/file.js", "require")
-    ).toThrow(err);
+  test("undefined is returned if filepath isn't found", () => {
+    // const err = "./path/to/nonexistent/file.js doesn't exist.";
+    expect(fileExists("./path/to/nonexistent/file.js", "require")).toBe(
+      undefined
+    );
   });
 
-  test("user supplied error is thrown if filepath isn't found", () => {
-    const err =
-      "No .mod file was found. Please add one to your root that includes the name of the mod-cli plugin you want to use.";
-    expect(() =>
-      fileExists("./path/to/nonexistent/file.js", "require", err)
-    ).toThrow(err);
-  });
+  // test("user supplied error is thrown if filepath isn't found", () => {
+  //   const err =
+  //     "No .mod file was found. Please add one to your root that includes the name of the mod-cli plugin you want to use.";
+  //   expect(() =>
+  //     fileExists("./path/to/nonexistent/file.js", "require", err)
+  //   ).toThrow(err);
+  // });
 });
