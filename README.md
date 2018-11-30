@@ -17,61 +17,61 @@ And on enter, all that repetitious code is added to your project!
 
 ## Example
 
-I've experienced first hand writing a lot of boilerplate with Redux. Despite all
-of its benefits, I've had to write out nearly identical actions, action creators,
-reducers, sagas, many many times. That doesn't even include all the importing
-and exporting.
-
-So to see how Mod CLI can help, clone the following repo and `cd` into it.
+To start clone the following repo.
 
 `$ git clone https://github.com/jonroby/mod-react.git`
 
-Next, you'll need a global installation of Mod CLI.
-
-`~/mod-react $ npm i -g @mod-cli/mod-cli`
-
-It can't do anything by itself. It needs the right plugin for a
-project. I've written a simple (and very limited) plugin for this project
-which you can get by
-
-`~/mod-react $ npm i -S @mod-cli/mod-react-plugin`
-
-Mod CLI needs to know that this is the plugin you want to use so add a
-`.mod` file to the root of the project and write out the plugin name.
-You can do that by
-
-`~/mod-react $ echo '@mod-cli/mod-react-plugin' > .mod`
-
-`~/mod-react $ npm start`
+`cd` into it and `$ npm i && npm start`.
 
 It's a simple counter app with incrementing and decrementing. Now let's say you
-want to add additional functionality for resetting the counter. If you've written
-any Redux, you know there are a number of steps involved in this process. So,
-instead, just enter the following code into the command line:
+want to add functionality for resetting the counter. If you've written any Redux,
+you know that this involves several steps including writing an action creator, an
+action constant, an action constant that is placed in a reducer's case statement,
+etc. And that doesn't even include all the importing and exporting. Of course,
+this is price you pay for Redux's simplicity, but wouldn't it be nice to avoid
+writing all of this (error prone) code?
+
+To help, install Mod CLI globally. 
+
+`$ npm i -g @mod-cli/mod-cli`
+
+By itself, Mod CLI can't do anything. It needs a plugin that specifies all of the
+desired file transformations. I've written one for this project.
+
+`$ npm i -S @mod-cli/mod-react-plugin`
+
+Write the plugin name in a `.mod` file so that Mod CLI will use this plugin
+to execute the transformations.
+
+`$ echo '@mod-cli/mod-react-plugin' > .mod`
+
+We're ready to write our reset functionality. Enter the following command.
 
 ```
- ~/mod-react $ mod reset Counter
+$ mod reset Counter
     modified mod-react/src/redux/actions/constants.js
     modified mod-react/src/redux/actions/creators.js
     modified mod-react/src/components/Counter.js
     modified mod-react/src/redux/reducers/counter.js
 ```
 
-This command generates all of the associated redux boilerplate:
+We can see that it made modifications to a number of files. Here are the changes.
 
 ![Screenshot](readme-images/mod-cli-diffs.png)
 
-To finish, update your reducer `src/redux/reducers/counter.js`:
+So to create our reset functionality we just need to update our reducer in
+`src/redux/reducers/counter.js`:
 
 ```
 ...
   case RESET:
-    return { ...state, count: 0};
+    return { ...state, count: 0 };
 ...
 ```
 
-And then just below the decrement buttion, add an additional button with its
-`onClick` handler set to the newly generated `this.props.reset` function: 
+And then in `src/components/Counter.js`, below the decrement buttion, add an
+button with its `onClick` handler set to the newly generated `reset` function,
+which is already available from `this.props`.
 ```
 ...
   <button onClick={this.props.decrement}>-</button>
@@ -79,22 +79,40 @@ And then just below the decrement buttion, add an additional button with its
 ...
 ```
 
-## Mod React
+Check it out in the browser!
 
-While this repo is for Mod CLI and not Mod React, some additional documentation
-is provided.
+## Mod React (Redux)
 
-If you want to generate a file individually, you do so with the following:
+### Individual commands
+
+To create the action constant and action creators
 `$ mod -a <action>`
 
+To generate a new component file with a component
 `$ mod -c <Component>`
 
+To generate a reducer file with a reducer
 `$ mod -r <reducer>`
 
-You can also string them together:
+To add a reducer to the rootReducer
+`$ mod -t <reducer>`
+
+### Actions
+
+Most of the boilerplate in Redux involves actions. So `-a` when used with those
+behave a little differently.
+
+This command will create the action constant and creator AND includes the
+relevant one into the reducer:
+`$ mod -a <action> -r <reducer>`
+
+Similarly for components
+`$ mod -a <action> -c <Component>`
+
+And you can do all at once
 `$ mod -a <action> -c <Component> -r <reducer>`
 
-If you use `<action>` as your first argument you can drop the `-a`.
+If you use `<action>` as your first argument you can drop the `-a`
 `$ mod <action> -c <Component> -r <reducer>`
 
 If your component and reducer have the same name (capitalization doesn't matter),
@@ -102,19 +120,14 @@ you don't need to specify each (this was the command given in the preceding
 section):
 `$ mod <action> <Component|reducer>`
 
-You might be wondering what happens if you don't have the component or the reducer.
-Happily, one will be generated for you and if you specified actions they will be
-added as well. Right now, you still have to add a generated reducer to the
-rootReducer; in an upcoming release this will also be done for you. In the mean
-time, you can `$ mod -t <reducer>`.
+Note that you also don't need to worry about adding duplicate actions, keys, case statements,
+etc. The `mod-react-plugin` won't do this. However, it (currently) won't
+display this information to you.
 
-You also don't need to worry about adding duplicate actions, keys, case statements,
-whatever it might be (at least in most cases). The `mod-react-plugin` won't
-create duplicates (and on the road map is way to print this information out on
-completion when CLI is finished.)
+### State
 
-Finally, you can also add a state to you can also add a key to `mapStateToProps`
-(this is if your Component and reducer share the same name):
+Finally, you can also add state to your components and reducers (this is if your Component
+and reducer share the same name):
 `$ mod -s myKey myComponent`
 
 ```
@@ -123,14 +136,16 @@ const mapStateToProps = state => ({
 })
 ```
 
-And if you specify a reducer: `$ mod -s myKey -c MyComponent -r myReducer`
+And if you specify a reducer: `$ mod -s myKey -c MyComponent -r myReducer`,
+it takes priority.
 ```
 const mapStateToProps = state => ({
   myKey: state.myReducer.myKey
 })
 ```
 
-You can also do a custom one: `$ mod -s my.custom.prop -c MyComponent`
+You can also create a custom key: `$ mod -s my.custom.prop -c MyComponent`
+(leave off `-r <reducer>`, doing so will probably result in odd behavior)
 
 ```
 const mapStateToProps = state => ({
@@ -138,8 +153,8 @@ const mapStateToProps = state => ({
 })
 ```
 
-Finally you can add that key to the reducer as well. `$ mod -s myKey -r myReducer`.
-(You can't set its value from the CLI.)
+Finally you can add a key to the reducer as well.
+`$ mod -s myKey -r myReducer`.
 
 ```
 const initialState = {
@@ -148,5 +163,15 @@ const initialState = {
 ```
 
 Just as with actions, you can add state to both the component and the reducer:
-
 `$ mod -s myKey -c MyComponent -r myReducer`
+
+If they share the same name
+`$ mod -s myKey <Component|reducer>`
+
+
+## TODO (Mod CLI)
+
+[] Printing all modifications
+[] Documentation
+[] Execute commands anywhere in a project
+[] A global package that executes local packages
