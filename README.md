@@ -70,7 +70,7 @@ functionality is to update our reducer in `src/redux/reducers/counter.js`:
 ...
 ```
 
-And then in `src/components/Counter.js`, below the decrement button, add a
+And then in `src/components/Counter.js`, right below the decrement button, add a
 button with its `onClick` handler set to the newly generated `reset` function,
 which is already available from `this.props`.
 ```
@@ -108,9 +108,9 @@ Most of the boilerplate in Redux involves actions or state (and in that order).
 More specifically, actions/action creators are added to components and reducers
 and not vice versa. Similarly, state is added to reducers and to components.
 
-With that in mind, this command will create the action constant and creator,
-AND includes constant into the reducer (it will also create the reducer and
-reducer file if it doesn't ):
+With that in mind, this command will create the action constant and creator
+AND includes a constant into the reducer (it will also create the reducer and
+reducer file if it doesn't exist):
 
 `$ mod -a <action> -r <reducer>`
 
@@ -132,9 +132,8 @@ need to specify each (this was the command given in the preceding section):
 
 `$ mod <action> <Component|reducer>`
 
-One other thing that the plugin takes care if is that you don't need to worry
-about writing over previous actions, keys, case statement, etc. (nor duplicating
-them). It's smart enough to never do this. However, it won't print out that it
+One other feature is tha that the plugin won't write over previous actions, keys,
+case statement, etc. (nor duplicating them). However, it won't print out that it
 didn't modify something (coming soon).
 
 ### State
@@ -182,11 +181,10 @@ If they share the same name
 Unlike actions, you can't ever omit `-s` preceding a state key. And
 `$ -s stateKey` won't do anything.
 
-## Note
-
 Even though invoking all these arguments share a similar structure
 (`-a <action>`, `-s <stateKey>`, `-c <Component>`, `-r <reducer>`), their
-behavior is different. I do hope it's intuitive.
+behavior is slightly different. In determing this structure, intuitiveness
+and brevity were weighted more heavily than consistency of behavior.
 
 ## TODO (Mod CLI)
 
