@@ -8,9 +8,9 @@ const fileExists = (path, fn, err) => {
 
   if (fs.existsSync(path)) {
     return type[fn](path);
+  } else {
+    return undefined; 
   }
-
-  throw new Error(err || `${path} doesn't exist.`);
 };
 
 module.exports = fileExists;

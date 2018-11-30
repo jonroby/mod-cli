@@ -25,4 +25,12 @@ const main = pipe(
   )
 );
 
+// getCommandLineArguments
+// getModificationTasks
+// getFiles
+// getModifications
+// modifyFiles
+// writeToFiles
+// echoModications
+
 module.exports = main;
