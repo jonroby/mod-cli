@@ -24,97 +24,128 @@ and exporting.
 
 So to see how Mod CLI can help, clone the following repo and `cd` into it.
 
-`$ git clone https://github.com/jonroby/with-redux-app.git`
+`$ git clone https://github.com/jonroby/mod-react.git`
 
-It's just a nextjs example project.
+Next, you'll need a global installation of Mod CLI.
 
-Next, you'll need Mod CLI. You can install it globally (or locally, though
-if you do, you'll prefix the `mod` commands with `npx`).
+`~/mod-react $ npm i -g @mod-cli/mod-cli`
 
-`$ npm i -g @mod-cli/mod-cli`
-
-The Mod CLI can't do anything by itself. It needs the right plugin for a
+It can't do anything by itself. It needs the right plugin for a
 project. I've written a simple (and very limited) plugin for this project
 which you can get by
 
-`$ npm i -S @mod-cli/nextjs-redux-example-plugin`
+`~/mod-react $ npm i -S @mod-cli/mod-react-plugin`
 
 Mod CLI needs to know that this is the plugin you want to use so add a
 `.mod` file to the root of the project and write out the plugin name.
 You can do that by
 
-`$ echo '@mod-cli/nextjs-redux-example-plugin' > .mod`
+`~/mod-react $ echo '@mod-cli/mod-react-plugin' > .mod`
 
-Now everything's ready! Go ahead and look at the files `/components/counter.js` and
-`./store.js`. If you've written any Redux, you'll see where you'd have to add
-some boilerplate to create a new action.
 
-So say you want to create a new action called `newAction`, which you'll then need
-to import into counter. Instead of doing this by hand, navigate to the CLI and
-then type and enter
+`~/mod-react $ npm start`
+
+It's a simple counter app with incrementing and decrementing. Now let's say you
+want to add additional functionality for resetting the counter. If you've written
+any Redux, you know there are a number of steps involved in this process. So,
+instead, just enter the following code into the command line:
 
 ```
-$ mod newAction Counter
-    modified with-redux-app/store.js
-    modified with-redux-app/components/Counter.js
+ ~/mod-react $ mod reset Counter
+    modified mod-react/src/redux/actions/constants.js
+    modified mod-react/src/redux/actions/creators.js
+    modified mod-react/src/components/Counter.js
+    modified mod-react/src/redux/reducers/counter.js
 ```
 
-This command generates an action and all the associated redux boilerplate,
-as well as then importing it into Counter.
+This command generates all of the associated redux boilerplate:
 
+![Screenshot](readme-images/mod-cli-diffs.png)
 
-```javascript
-// store.js
+All it takes to finish is to update your reducer `src/redux/reducers/counter.js`:
 
+```
 ...
+  case RESET:
+    return { ...state, count: 0};
+...
+```
 
-export const actionTypes = {
-  TICK: 'TICK',
-  INCREMENT: 'INCREMENT',
-  DECREMENT: 'DECREMENT',
-  RESET: 'RESET',
-  NEW_ACTION: "NEW_ACTION" // an actionType is added
+And then just below the decrement buttion, add an additional button with its
+onClick handler set to the newly generated `this.props.reset` function: 
+```
+...
+  <button onClick={this.props.decrement}>-</button>
+  <button onClick={this.props.reset}>0</button> // add 
+...
+```
+
+## Mod React
+
+While this repo is for Mod CLI and not Mod React, some additional documentation
+is provided.
+
+If you want to generate a file individually, you do so with the following:
+`$ mod -a <action>`
+`$ mod -c <Component>`
+`$ mod -r <reducer>`
+
+You can also string them together:
+`$ mod -a <action> -c <Component> -r <reducer>`
+
+If you use `<action>` as your first argument you can drop the `-a`.
+`$ mod -a <action> -c <Component> -r <reducer>`
+
+If your component and reducer have the same name (capitalization doesn't matter),
+you don't need to specify each (this was the command given in the preceding
+section):
+`$ mod <action> <Component|reducer>`
+
+You might be wondering what happens if you don't have the component or the reducer.
+One will be generated for you and if you specified actions they will be added as
+well. Right now, you still have to add a generated reducer to the rootReducer; in
+an upcoming release this will also be done for you. In the mean time, you can
+`$ mod -t <reducer>`.
+
+You also don't need to worry about adding duplicate actions, keys, case statements,
+whatever it might be (at least in most cases). The the `mod-react-plugin` won't
+create duplicates (and on the road map is way to print this information out on
+completion when CLI is finished.)
+
+Finally, you can also add a state to you can also add a key to `mapStateToProps`
+(this is if your Component and reducer share the same name):
+`$ mod -s myKey myComponent`
+
+```
+const mapStateToProps = state => ({
+  myKey: state.myComponent.myKey
+})
+```
+
+And if you specify a reducer: `$ mod -s myKey -c MyComponent -r myReducer`
+```
+const mapStateToProps = state => ({
+  myKey: state.myReducer.myKey
+})
+```
+
+You can also do a custom one: `$ mod -s my.custom.prop -c MyComponent`
+
+```
+const mapStateToProps = state => ({
+  prop: state.my.custom.prop
+})
+```
+
+Finally you can add that key to the reducer as well. `$ mod -s myKey -r myReducer`.
+(You can't set its value from the CLI.)
+
+```
+const initialState = {
+  myKey: null,
 }
-
-...
-
-case actionTypes.RESET:
-  return Object.assign({}, state, {
-    count: exampleInitialState.count
-  })
-// a case statement in the reducer
-case types.NEW_ACTION:
-  return state;
-
-...
-
-// an action creator 
-export const newAction = () => dispatch => {   
-  return dispatch({
-    type: actionTypes.NEW_ACTION
-  });
-};
-
-...
 ```
 
+Just as with actions, you can add state to both the component and the reducer:
 
-```javascript
-// components/counter.js
-
-// newAction is imported for you
-import { incrementCount, decrementCount, resetCount, newAction } from '../store';
-```
-
-If you had only wanted to update the store (actions are not capitalized):
-
-`$ mod <action> -a`
-
-Or just the component (components are capitalized):
-
-`$ mod <action> <Component> -c`
-
-Now these are not specific to Mod CLI. The command line options and updating
-behavior are specified by the plugin. Note that this is plugin is very limited
-and will break easily. I only include it here for illustrative purposes.
-
+`$ mod -s myKey -c MyComponent -r myReducer`
