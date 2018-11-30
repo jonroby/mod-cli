@@ -24,7 +24,9 @@ describe("fileExists", () => {
 
   test("undefined is returned if filepath isn't found", () => {
     // const err = "./path/to/nonexistent/file.js doesn't exist.";
-    expect(fileExists("./path/to/nonexistent/file.js", "require")).toBe(undefined);
+    expect(fileExists("./path/to/nonexistent/file.js", "require")).toBe(
+      undefined
+    );
   });
 
   // test("user supplied error is thrown if filepath isn't found", () => {

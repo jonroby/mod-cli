@@ -6,7 +6,7 @@ const { fileExists, removeDotFromFilepath } = require("./helpers");
 //   data: {}
 //   commandLineArguments: [],
 //   tasks: [task1, task2], // Once filestrings are read we "send it back",
-//   modificationList: [] or {}? 
+//   modificationList: [] or {}?
 // }
 
 const getFile = task => ({
@@ -15,9 +15,8 @@ const getFile = task => ({
 });
 
 const getMod = mods => task => {
-  return { ...task, mod: mods[task.mod](task.data) }
-}
-
+  return { ...task, mod: mods[task.mod](task.data) };
+};
 
 const modifyFile = (parser, defaults) => task => {
   return task.filestring
@@ -27,13 +26,11 @@ const modifyFile = (parser, defaults) => task => {
       }
     : {
         ...task,
-      filestring: parser(defaults[task.default](task.data), task.mod),
+        filestring: parser(defaults[task.default](task.data), task.mod),
       };
-  
-}
+};
 
 const printMods = root => f => {
-
   // TODO: Add logic for modifications, new, deleting, etc.
   const type = chalk.greenBright("modified");
   const file = `${root}/${removeDotFromFilepath(f)}`;

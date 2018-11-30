@@ -37,10 +37,14 @@ describe("lib", () => {
 
   test("modifyFile returns task object back when filestring is undefined", () => {
     const task = { a: "a", filestring: undefined, default: "d" };
-    const parser = (a) => "modified " + a;
+    const parser = a => "modified " + a;
     const defaults = { d: () => "default" };
     const result = modifyFile(parser, defaults)(task);
-    expect(result).toEqual({ a: "a", filestring: "modified default", default: "d" });
+    expect(result).toEqual({
+      a: "a",
+      filestring: "modified default",
+      default: "d",
+    });
   });
 
   test("printMods echoes modified file", () => {

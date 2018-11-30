@@ -1,5 +1,5 @@
 const fileExists = (path, fn) => {
-const fs = require("fs");
+  const fs = require("fs");
 
   const type = {
     require: require,
@@ -9,7 +9,7 @@ const fs = require("fs");
   if (fs.existsSync(path)) {
     return type[fn](path);
   } else {
-    return undefined; 
+    return undefined;
   }
 };
 
