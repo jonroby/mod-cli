@@ -15,10 +15,25 @@ const getFile = task => ({
 });
 
 const getMod = mods => task => {
-  return { ...task, mod: mods[task.mod](task.data) };
+  if (task.mod === "NONE") {
+    return task;
+  }
+
+  return {
+    ...task,
+    mod: mods[task.mod] && mods[task.mod](task.data),
+  };
 };
 
 const modifyFile = (parser, defaults) => task => {
+  if (task.mod === "NONE" && task.filestring) {
+    return task;
+  }
+
+  if (task.mod === "NONE" && !task.filestring) {
+    return { ...task, filestring: defaults[task.default](task.data) };
+  }
+
   return task.filestring
     ? {
         ...task,
@@ -26,7 +41,9 @@ const modifyFile = (parser, defaults) => task => {
       }
     : {
         ...task,
-        filestring: parser(defaults[task.default](task.data), task.mod),
+        filestring: task.mod
+          ? parser(defaults[task.default](task.data), task.mod)
+          : defaults[task.default](task.data),
       };
 };
 
