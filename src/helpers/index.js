@@ -5,6 +5,7 @@ const writeToFile = require("./writeToFile");
 const pipe = require("./pipe");
 const removeDotFromFilepath = require("./removeDotFromFilepath");
 const map = require("./map");
+const flat = require('./flat');
 
 module.exports = {
   getCommands,
@@ -14,4 +15,5 @@ module.exports = {
   pipe,
   removeDotFromFilepath,
   map,
+  flat
 };

@@ -1,58 +1,128 @@
+const fs = require("fs");
 const shell = require("shelljs");
 const chalk = require("chalk");
 const { fileExists, removeDotFromFilepath } = require("./helpers");
 
-// const state = {
-//   data: {}
-//   commandLineArguments: [],
-//   tasks: [task1, task2], // Once filestrings are read we "send it back",
-//   modificationList: [] or {}?
-// }
+// map over calling wo? const wo = obj => k => ({ ...obj, k });
 
-const getFile = task => ({
-  ...task,
-  filestring: fileExists(task.filepath, "readFile"),
+const getFile = f => ({
+  ...f,
+  filestring: fileExists(f.filepath, "readFile"),
 });
 
-const getMod = mods => task => {
-  if (task.mod === "NONE") {
-    return task;
-  }
-
+const getInput = mod => () => {
   return {
-    ...task,
-    mod: mods[task.mod] && mods[task.mod](task.data),
+    ...mod,
+    input: process.argv.slice(2),
   };
 };
 
-const modifyFile = (parser, defaults) => task => {
-  if (task.mod === "NONE" && task.filestring) {
-    return task;
-  }
+const selectFiles = mod => {
+  // This will live in Mod CLI
+  const type = { type: config.types[mod.input[0]] };
+  const flags = mod.input.slice(1).filter(c => c.match(/-[a-z]/));
+  const nonFlags = mod.input.slice(1).filter(c => !c.match(/-[a-z]/));
 
-  if (task.mod === "NONE" && !task.filestring) {
-    return { ...task, filestring: defaults[task.default](task.data) };
-  }
-
-  return task.filestring
-    ? {
-        ...task,
-        filestring: parser(task.filestring, task.mod),
-      }
-    : {
-        ...task,
-        filestring: task.mod
-          ? parser(defaults[task.default](task.data), task.mod)
-          : defaults[task.default](task.data),
+  const data = flags.reduce((prev, curr, i) => {
+    if (config.chains[curr]) {
+      const o = config.chains[curr].reduce((prev, curr) => {
+        return { ...prev, [config.flagToFlagName[curr]]: nonFlags[i] };
+      }, {});
+      return {
+        ...prev,
+        ...o,
+        [config.flagToFlagName[curr]]: nonFlags[i],
       };
+    }
+    return { ...prev, [config.flagToFlagName[curr]]: nonFlags[i] };
+  }, type);
+
+  const mf = config.modFlags(data);
+  const fl = flat(flags.map(f => (config.chains[f] ? config.chains[f] : f)));
+  const t = fl.map(f => {
+    return mf[f];
+  });
+
+  return {
+    ...mod,
+    data: {
+      ...data,
+      actionConstants: ["MY_RED_ACTION"],
+      pathToActionCreators: "../redux/actions/creators",
+      pathToActionConstantsReducer: "../actions/constants",
+    },
+    files: t,
+  };
 };
 
-const printMods = root => f => {
+const findFiles = mod => {
+  return {
+    ...mod,
+    files: mod.files.map(getFile),
+  };
+};
+
+const genFilestrings = gens => mod => {
+  const files = mod.files.map(f => {
+    if (!f.filestring) {
+      return {
+        ...f,
+        filestring: gens[f.name](mod.data),
+      };
+    } else {
+      return f;
+    }
+  });
+
+  return {
+    ...mod,
+    files,
+  };
+};
+
+const modFilestrings = (parser, mods) => mod => {
+  const files = mod.files.map(f => {
+    if (mods[mod.data.type] && mods[mod.data.type][f.name]) {
+      return {
+        ...f,
+        filestring: parser(f.filestring, mods[mod.data.type][f.name](mod.data)),
+      };
+    }
+    return f;
+  });
+
+  return {
+    ...mod,
+    files,
+  };
+};
+
+const writeFilestrings = mod => {
+  const w = f => {
+    fs.writeFileSync(f.filepath, f.filestring, "utf8");
+    return f;
+  };
+  mod.files.map(w);
+  return mod;
+};
+
+const printDiffs = mod => {
   // TODO: Add logic for modifications, new, deleting, etc.
-  const type = chalk.greenBright("modified");
-  const file = `${root}/${removeDotFromFilepath(f)}`;
-  shell.echo(`    ${type} ${file}`);
-  return f;
+
+  // const type = chalk.greenBright("modified");
+  // const file = `${root}/${removeDotFromFilepath(f)}`;
+  // shell.echo(`    ${type} ${file}`);
+
+  return mod;
 };
 
-module.exports = { getFile, getMod, modifyFile, printMods };
+module.exports = {
+  getFile,
+  getInput,
+  selectFiles,
+  findFiles,
+  genFilestrings,
+  modFilestrings,
+  writeFilestrings,
+  printDiffs,
+};

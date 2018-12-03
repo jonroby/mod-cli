@@ -1,0 +1,5 @@
+- [ ] Refactor to use map instead of list
+- [ ] Use specific mod-react branch in README example
+- [ ] Include brief section on async option in README with image
+- [ ] Execute commands anywhere in a project
+- [ ] A global package that executes local packages
