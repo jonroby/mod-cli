@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1543884841251" clover="3.2.0">
+  <project timestamp="1543884841251" name="All files">
+    <metrics statements="135" coveredstatements="29" conditionals="23" coveredconditionals="2" methods="44" coveredmethods="11" elements="202" coveredelements="42" complexity="0" loc="135" ncloc="135" packages="4" files="17" classes="17">
+      <package name="src">
+        <metrics statements="9" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <file name="main.js" path="/Users/JonRoby/Desktop/mod-cli-prep/@mod-cli/mod-cli/src/main.js">
+          <metrics statements="9" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+          <line num="1" count="0" type="stmt"/>
+          <line num="10" count="0" type="stmt"/>
+          <line num="11" count="0" type="stmt"/>
+          <line num="13" count="0" type="stmt"/>
+          <line num="15" count="0" type="stmt"/>
+          <line num="23" count="0" type="stmt"/>
+          <line num="31" count="0" type="stmt"/>
+          <line num="42" count="0" type="stmt"/>
+          <line num="45" count="0" type="stmt"/>
+        </file>
+      </package>
+      <package name="src.constants">
+        <metrics statements="4" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <file name="index.js" path="/Users/JonRoby/Desktop/mod-cli-prep/@mod-cli/mod-cli/src/constants/index.js">
+          <metrics statements="4" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+          <line num="1" count="0" type="stmt"/>
+          <line num="2" count="0" type="stmt"/>
+          <line num="3" count="0" type="stmt"/>
+          <line num="5" count="0" type="stmt"/>
+        </file>
+      </package>
+      <package name="src.helpers">
+        <metrics statements="34" coveredstatements="29" conditionals="6" coveredconditionals="2" methods="13" coveredmethods="11"/>
+        <file name="compose.js" path="/Users/JonRoby/Desktop/mod-cli-prep/@mod-cli/mod-cli/src/helpers/compose.js">
+          <metrics statements="5" coveredstatements="5" conditionals="2" coveredconditionals="2" methods="3" coveredmethods="3"/>
+          <line num="1" count="2" type="stmt"/>
+          <line num="2" count="4" type="cond" truecount="2" falsecount="0"/>
+          <line num="4" count="3" type="stmt"/>
+          <line num="5" count="6" type="stmt"/>
+          <line num="10" count="2" type="stmt"/>
+        </file>
+        <file name="flatten.js" path="/Users/JonRoby/Desktop/mod-cli-prep/@mod-cli/mod-cli/src/helpers/flatten.js">
+          <metrics statements="7" coveredstatements="2" conditionals="4" coveredconditionals="0" methods="2" coveredmethods="0"/>
+          <line num="1" count="1" type="stmt"/>
+          <line num="2" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="3" count="0" type="stmt"/>
+          <line num="4" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="5" count="0" type="stmt"/>
+          <line num="7" count="0" type="stmt"/>
+          <line num="12" count="1" type="stmt"/>
+        </file>
+        <file name="index.js" path="/Users/JonRoby/Desktop/mod-cli-prep/@mod-cli/mod-cli/src/helpers/index.js">
+          <metrics statements="11" coveredstatements="11" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+          <line num="1" count="1" type="stmt"/>
+          <line num="2" count="1" type="stmt"/>
+          <line num="3" count="1" type="stmt"/>
+          <line num="4" count="1" type="stmt"/>
+          <line num="5" count="1" type="stmt"/>
+          <line num="6" count="1" type="stmt"/>
+          <line num="7" count="1" type="stmt"/>
+          <line num="8" count="1" type="stmt"/>
+          <line num="9" count="1" type="stmt"/>
+          <line num="10" count="1" type="stmt"/>
+          <line num="12" count="1" type="stmt"/>
+        </file>
+        <file name="map.js" path="/Users/JonRoby/Desktop/mod-cli-prep/@mod-cli/mod-cli/src/helpers/map.js">
+          <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="3"/>
+          <line num="1" count="4" type="stmt"/>
+          <line num="3" count="2" type="stmt"/>
+        </file>
+        <file name="removeDotFromFilepath.js" path="/Users/JonRoby/Desktop/mod-cli-prep/@mod-cli/mod-cli/src/helpers/removeDotFromFilepath.js">
+          <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+          <line num="1" count="2" type="stmt"/>
+          <line num="2" count="1" type="stmt"/>
+          <line num="4" count="4" type="stmt"/>
+          <line num="7" count="2" type="stmt"/>
+        </file>
+        <file name="unspool.js" path="/Users/JonRoby/Desktop/mod-cli-prep/@mod-cli/mod-cli/src/helpers/unspool.js">
+          <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="3"/>
+          <line num="1" count="2" type="stmt"/>
+          <line num="2" count="6" type="stmt"/>
+          <line num="3" count="6" type="stmt"/>
+          <line num="4" count="1" type="stmt"/>
+          <line num="7" count="2" type="stmt"/>
+        </file>
+      </package>
+      <package name="src.lib">
+        <metrics statements="88" coveredstatements="0" conditionals="17" coveredconditionals="0" methods="30" coveredmethods="0"/>
+        <file name="findFiles.js" path="/Users/JonRoby/Desktop/mod-cli-prep/@mod-cli/mod-cli/src/lib/findFiles.js">
+          <metrics statements="5" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
+          <line num="1" count="0" type="stmt"/>
+          <line num="3" count="0" type="stmt"/>
+          <line num="4" count="0" type="stmt"/>
+          <line num="10" count="0" type="stmt"/>
+          <line num="15" count="0" type="stmt"/>
+        </file>
+        <file name="genFilestrings.js" path="/Users/JonRoby/Desktop/mod-cli-prep/@mod-cli/mod-cli/src/lib/genFilestrings.js">
+          <metrics statements="9" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="3" coveredmethods="0"/>
+          <line num="1" count="0" type="stmt"/>
+          <line num="3" count="0" type="stmt"/>
+          <line num="4" count="0" type="stmt"/>
+          <line num="5" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="6" count="0" type="stmt"/>
+          <line num="7" count="0" type="stmt"/>
+          <line num="12" count="0" type="stmt"/>
+          <line num="15" count="0" type="stmt"/>
+          <line num="21" count="0" type="stmt"/>
+        </file>
+        <file name="getInput.js" path="/Users/JonRoby/Desktop/mod-cli-prep/@mod-cli/mod-cli/src/lib/getInput.js">
+          <metrics statements="3" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
+          <line num="1" count="0" type="stmt"/>
+          <line num="2" count="0" type="stmt"/>
+          <line num="8" count="0" type="stmt"/>
+        </file>
+        <file name="index.js" path="/Users/JonRoby/Desktop/mod-cli-prep/@mod-cli/mod-cli/src/lib/index.js">
+          <metrics statements="8" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+          <line num="1" count="0" type="stmt"/>
+          <line num="2" count="0" type="stmt"/>
+          <line num="3" count="0" type="stmt"/>
+          <line num="4" count="0" type="stmt"/>
+          <line num="5" count="0" type="stmt"/>
+          <line num="6" count="0" type="stmt"/>
+          <line num="7" count="0" type="stmt"/>
+          <line num="11" count="0" type="stmt"/>
+        </file>
+        <file name="modFilestrings.js" path="/Users/JonRoby/Desktop/mod-cli-prep/@mod-cli/mod-cli/src/lib/modFilestrings.js">
+          <metrics statements="10" coveredstatements="0" conditionals="4" coveredconditionals="0" methods="3" coveredmethods="0"/>
+          <line num="1" count="0" type="stmt"/>
+          <line num="3" count="0" type="stmt"/>
+          <line num="4" count="0" type="stmt"/>
+          <line num="5" count="0" type="cond" truecount="0" falsecount="4"/>
+          <line num="6" count="0" type="stmt"/>
+          <line num="10" count="0" type="stmt"/>
+          <line num="11" count="0" type="stmt"/>
+          <line num="16" count="0" type="stmt"/>
+          <line num="19" count="0" type="stmt"/>
+          <line num="25" count="0" type="stmt"/>
+        </file>
+        <file name="printDiffs.js" path="/Users/JonRoby/Desktop/mod-cli-prep/@mod-cli/mod-cli/src/lib/printDiffs.js">
+          <metrics statements="12" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="5" coveredmethods="0"/>
+          <line num="1" count="0" type="stmt"/>
+          <line num="2" count="0" type="stmt"/>
+          <line num="6" count="0" type="stmt"/>
+          <line num="8" count="0" type="stmt"/>
+          <line num="9" count="0" type="stmt"/>
+          <line num="10" count="0" type="stmt"/>
+          <line num="11" count="0" type="stmt"/>
+          <line num="14" count="0" type="stmt"/>
+          <line num="15" count="0" type="stmt"/>
+          <line num="16" count="0" type="stmt"/>
+          <line num="19" count="0" type="stmt"/>
+          <line num="22" count="0" type="stmt"/>
+        </file>
+        <file name="selectFiles.js" path="/Users/JonRoby/Desktop/mod-cli-prep/@mod-cli/mod-cli/src/lib/selectFiles.js">
+          <metrics statements="25" coveredstatements="0" conditionals="4" coveredconditionals="0" methods="12" coveredmethods="0"/>
+          <line num="1" count="0" type="stmt"/>
+          <line num="3" count="0" type="stmt"/>
+          <line num="4" count="0" type="stmt"/>
+          <line num="5" count="0" type="stmt"/>
+          <line num="7" count="0" type="stmt"/>
+          <line num="8" count="0" type="stmt"/>
+          <line num="9" count="0" type="stmt"/>
+          <line num="10" count="0" type="stmt"/>
+          <line num="11" count="0" type="stmt"/>
+          <line num="14" count="0" type="stmt"/>
+          <line num="22" count="0" type="stmt"/>
+          <line num="25" count="0" type="stmt"/>
+          <line num="28" count="0" type="stmt"/>
+          <line num="29" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="34" count="0" type="stmt"/>
+          <line num="35" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="39" count="0" type="stmt"/>
+          <line num="42" count="0" type="stmt"/>
+          <line num="44" count="0" type="stmt"/>
+          <line num="46" count="0" type="stmt"/>
+          <line num="47" count="0" type="stmt"/>
+          <line num="52" count="0" type="stmt"/>
+          <line num="53" count="0" type="stmt"/>
+          <line num="56" count="0" type="stmt"/>
+          <line num="63" count="0" type="stmt"/>
+        </file>
+        <file name="updateDiffs.js" path="/Users/JonRoby/Desktop/mod-cli-prep/@mod-cli/mod-cli/src/lib/updateDiffs.js">
+          <metrics statements="10" coveredstatements="0" conditionals="7" coveredconditionals="0" methods="1" coveredmethods="0"/>
+          <line num="1" count="0" type="stmt"/>
+          <line num="2" count="0" type="stmt"/>
+          <line num="4" count="0" type="stmt"/>
+          <line num="5" count="0" type="stmt"/>
+          <line num="6" count="0" type="cond" truecount="0" falsecount="5"/>
+          <line num="7" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="8" count="0" type="stmt"/>
+          <line num="10" count="0" type="stmt"/>
+          <line num="13" count="0" type="stmt"/>
+          <line num="17" count="0" type="stmt"/>
+        </file>
+        <file name="writeFilestrings.js" path="/Users/JonRoby/Desktop/mod-cli-prep/@mod-cli/mod-cli/src/lib/writeFilestrings.js">
+          <metrics statements="6" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
+          <line num="1" count="0" type="stmt"/>
+          <line num="3" count="0" type="stmt"/>
+          <line num="4" count="0" type="stmt"/>
+          <line num="5" count="0" type="stmt"/>
+          <line num="7" count="0" type="stmt"/>
+          <line num="10" count="0" type="stmt"/>
+        </file>
+      </package>
+    </metrics>
+  </project>
+</coverage>

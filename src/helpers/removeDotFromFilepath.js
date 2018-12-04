@@ -1,5 +1,5 @@
 const removeDotFromFilepath = f =>
-  f.filepath
+  f
     .split("/")
     .filter(i => i !== ".")
     .join("/");

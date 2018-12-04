@@ -8,7 +8,7 @@ const {
   writeFilestrings,
   printDiffs,
 } = require("./lib");
-const { pipe, flat } = require("./helpers");
+const { pipe } = require("./helpers");
 
 const config = setup();
 
@@ -16,20 +16,30 @@ const mod = {
   input: [],
   files: [],
   data: {},
-  diffs: [],
+  diffs: {},
+  // config,
 };
 
 const main = () => {
+  // const input = getInput(mod);
+
+  // if (input.length === 0) {
+  //   shell.echo(config.man);
+  //   return;
+  // }
+
   const m = pipe(
     getInput(mod),
-    selectFiles,
+    config.hook,
+    selectFiles(config),
     findFiles,
     genFilestrings(config.gens),
     modFilestrings(config.parser, config.mods),
-    writeFilestrings
-    // printDiffs
+    writeFilestrings,
+    printDiffs
   );
-  console.log(m());
+  // m();
+  return m();
 };
 
 module.exports = main;
