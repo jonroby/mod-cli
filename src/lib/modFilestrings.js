@@ -13,6 +13,7 @@ const modFilestrings = (parser, mods) => mod => {
         filestring,
       };
     }
+
     return f;
   });
 

@@ -47,20 +47,15 @@ to execute the transformations:
 
 We're ready to write our reset functionality. Enter the following command.
 
-```
-$ mod reset Counter
-    modified mod-react/src/redux/actions/constants.js
-    modified mod-react/src/redux/actions/creators.js
-    modified mod-react/src/components/Counter.js
-    modified mod-react/src/redux/reducers/counter.js
-```
+![Screenshot](readme-images/mod_reset_counter_command.png)
 
-We can see that it made modifications to a number of files! It currently doesn't
-display which changes (coming soon), but here are the git diffs.
+We can see that it made modifications to a number of files! White text indicates modifications,
+whereas grey text indicates no modifications. To see the particular modifications, here are the
+git diffs.
 
 ![Screenshot](readme-images/mod-cli-diffs.png)
 
-All of the boilerplate has been added! So all we have to do to create our reset
+All of the boilerplate has been added! So all we have to do in order to create our reset
 functionality is to update our reducer in `src/redux/reducers/counter.js`:
 
 ```
@@ -82,106 +77,146 @@ which is already available from `this.props`.
 
 That's it! Check it out in the browser.
 
-## Mod React (Redux)
+## Example with Sagas
 
-### Individual commands
+In the previous example we modified several items that already existed. But what
+if we wanted to generate something new? Enter the following command.
 
-To create an action constant and action creator
+![Screenshot](readme-images/async_command.png)
 
-`$ mod -a <action>`
+Unsurprisingly, the files that are colored green are new files. Again, files
+with white colored text indicates they have been modified. As you can see, it's
+just as easy to generate files as it was to modify them.
 
-To generate a new component file with a component
+Please note that components, reducers, sagas aren't required to share the same
+name. This syntax is just a convenience if they do. If you wanted to use
+different names you'd enter
 
-`$ mod -c <Component>`
+`mod a -a <actionName> -c <ComponentName> -r <reducerName>`.
 
-To generate a reducer file with a reducer
+Now let's look at what's been generated and modified by adding `async`.
 
-`$ mod -r <reducer>`
+![Screenshot](readme-images/repo.png)
 
-To add a reducer to the rootReducer
+One obvious difference is that the actions now include `success` and `failure`.
+Additionally, several files were created for sagas!
 
-`$ mod -t <reducer>`
+![Screenshot](readme-images/repos_saga.png)
 
-### Actions
-
-Most of the boilerplate in Redux involves actions or state (and in that order).
-More specifically, actions/action creators are added to components and reducers
-and not vice versa. Similarly, state is added to reducers and to components.
-
-With that in mind, this command will create the action constant/creator
-AND includes the constant into the reducer (it will also create the reducer and
-reducer file if it doesn't exist):
-
-`$ mod -a <action> -r <reducer>`
-
-So too for components (action creator)
-
-`$ mod -a <action> -c <Component>`
-
-And to do it all at once
-
-`$ mod -a <action> -c <Component> -r <reducer>`
-
-Two conveniences are that if you use `<action>` as your first argument you can
-drop the `-a`:
-
-`$ mod <action> -c <Component> -r <reducer>`
-
-The second, is that if your component and reducer have the same name, you don't
-need to specify each (this was the command given in the preceding section):
-
-`$ mod <action> <Component|reducer>`
-
-One other feature is that the plugin won't write over previous actions, keys,
-case statements, etc. Nor does it duplicate them. However, it currently won't
-display this to you (coming soon).
-
-### State
-
-Along with actions, you can also add state to your components and reducers.
-
-`$ mod -s myKey -c myComponent`
+Let's make an API call with GraphQL (traditional gets and posts are possible too).
+I'll use Github's API. In `src/redux/sagas/requests/repo.js` enter the following
+information. 
 
 ```
-const mapStateToProps = state => ({
-  myKey: state.myComponent.myKey
-})
-```
-
-And if you specify a reducer: `$ mod -s myKey -c MyComponent -r myReducer`,
-it takes priority.
-```
-const mapStateToProps = state => ({
-  myKey: state.myReducer.myKey
-})
-```
-
-You can also create a custom key: `$ mod -s my.custom.prop -c MyComponent`
-```
-const mapStateToProps = state => ({
-  prop: state.my.custom.prop
-})
-```
-
-Finally you can add a key to the reducer as well.
-`$ mod -s myKey -r myReducer`.
-
-```
-const initialState = {
-  myKey: null,
+const url = "https://developer.github.com/v4/explorer/";
+const graphqlString = `
+query { 
+  repository(owner: "jonroby", name: "mod-cli") {
+    name
+    stargazers(last: 10) {
+      edges {
+	node {
+	  name
+	}
+      }
+    }
+  }
 }
+`;
 ```
 
-Just as with actions, you can add state to both the component and the reducer:
-`$ mod -s myKey -c MyComponent -r myReducer`
+If you want to follow along using Github you'll need to add a proxy to the requests,
+since the Github API doesn't allow CORS requests.  Alternatively, you can try
 
-If they share the same name
-`$ mod -s myKey <Component|reducer>`
+```
+const url = "https://fakerql.com/graphql";
+const graphqlString = `
+{
+  Todo(id: 1) {
+    id
+    title
+  }
+}
+`;
+```
 
-Unlike actions, you can't ever omit `-s` preceding a state key. And
-`$ -s stateKey` won't do anything.
+We know that we'll want these values in our reducer store, so we can do that by
 
-Even though invoking all these arguments share a similar structure
-(`-a <action>`, `-s <stateKey>`, `-c <Component>`, `-r <reducer>`), their
-behavior is slightly different. In determing this structure, intuitiveness
-and brevity were weighted more heavily than consistency of behavior.
+`$ mod x {name,stargazers} -c Repo -r repo`
+
+This will add the keys, `name` and `stargazers` to `initialState` in the repo
+reducer and to `mapStateToProps` in the Repo component!
+
+```
+// src/redux/reducers/repo.js
+...
+const initialState = {
+  name: null,
+  stargazers: null,
+};
+```
+
+```
+// src/components/Component.jsx
+...
+const mapStateToProps = state => ({
+  name: state.repo.name,
+  stargazers: state.repo.stargazers
+});
+```
+
+If you're using the FakerQL endpoint, try this: (of course you wouldn't want your Todos
+held in state this way; this is only for the purpose of illustration):
+
+`$ mod x {id,title} -c Repo -r repo` (warning: do not add a space between `id,` and `title`!)
+
+Now we'll want to include our new Repo component in the app, instead of the Counter.
+So in `App.jsx`, make the following changes.
+
+```
+...
+import Repo from "./Repo.jsx";
+
+...
+
+<Switch>
+  <Route path="/" component={Repo} exact />
+</Switch>
+
+...
+```
+
+```
+// src/components/Repo.jsx
+...
+return (
+  <div>
+    <div>Repo: {this.props.name}</div>
+    <div>Repo: {this.props.stargazers.map(s => (
+      <div>{s}</div> 
+    ))}</div>
+    <button onClick={this.props.fetchGithubRepo}></button>     
+  </div>
+);
+...
+```
+
+```
+// src/redux/reducers/repo.js
+...
+  case FETCH_GITHUB_REPO_SUCCESS:
+    return {
+      ...state,
+      name: action.payload.data.repository.name,
+      stargazers: action.payload.data.repository.edges.map(e => e.node.name)	
+    };
+...
+```
+
+Now you're ready! Try clicking and you'll see everything works!
+
+For more information on Mod React checkout the [repo](https://github.com/jonroby/mod-react)
+
+## Create your own plugin
+
+Coming soon...
