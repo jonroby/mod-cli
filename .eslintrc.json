@@ -3,7 +3,7 @@
     "node": 1,
     "jest": true
   },
-  "extends": ["eslint:recommended"],
+  "extends": ["eslint:recommended", "prettier"],
   "parserOptions": {
     "ecmaVersion": 2018
   },

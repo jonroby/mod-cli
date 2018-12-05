@@ -1,6 +1,6 @@
-const fileExists = (path, fn) => {
-  const fs = require("fs");
+const fs = require("fs");
 
+const fileExists = (path, fn) => {
   const type = {
     require: require,
     readFile: path => fs.readFileSync(path, "utf8"),

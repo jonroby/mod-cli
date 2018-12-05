@@ -185,11 +185,3 @@ Even though invoking all these arguments share a similar structure
 (`-a <action>`, `-s <stateKey>`, `-c <Component>`, `-r <reducer>`), their
 behavior is slightly different. In determing this structure, intuitiveness
 and brevity were weighted more heavily than consistency of behavior.
-
-## TODO (Mod CLI)
-
-- [ ] Printing all modifications
-- [ ] Primary function signature from a list to map
-- [ ] Documentation
-- [ ] Execute commands anywhere in a project
-- [ ] A global package that executes local packages

@@ -1,36 +1,33 @@
 const setup = require("./setup");
-const { getFile, getMod, modifyFile, printMods } = require("./lib");
 const {
-  getCommands,
-  getFileroot,
-  writeToFile,
-  pipe,
-  map,
-} = require("./helpers");
+  getInput,
+  selectFiles,
+  findFiles,
+  genFilestrings,
+  modFilestrings,
+  writeFilestrings,
+  printDiffs,
+} = require("./lib");
+const { pipe } = require("./helpers");
 
-const { defaults, mods, config } = setup();
+const config = setup();
+
+const mod = {
+  input: [],
+  files: [],
+  data: {},
+  diffs: {},
+};
 
 const main = pipe(
-  getCommands,
-  config.commands,
-  map(getFile),
-  map(getMod(mods)),
-  map(modifyFile(config.parser, defaults)),
-  map(writeToFile),
-  map(
-    pipe(
-      getFileroot,
-      printMods
-    )()
-  )
+  getInput(mod),
+  config.hook,
+  selectFiles(config),
+  findFiles,
+  genFilestrings(config.gens),
+  modFilestrings(config.parser, config.mods),
+  writeFilestrings,
+  printDiffs
 );
-
-// getCommandLineArguments
-// getModificationTasks
-// getFiles
-// getModifications
-// modifyFiles
-// writeToFiles
-// echoModications
 
 module.exports = main;

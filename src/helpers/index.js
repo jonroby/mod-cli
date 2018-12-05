@@ -2,9 +2,11 @@ const getCommands = require("./getCommands");
 const getFileroot = require("./getFileroot");
 const fileExists = require("./fileExists");
 const writeToFile = require("./writeToFile");
-const pipe = require("./pipe");
 const removeDotFromFilepath = require("./removeDotFromFilepath");
+const pipe = require("./pipe");
 const map = require("./map");
+const flatten = require("./flatten");
+const unspool = require("./unspool");
 
 module.exports = {
   getCommands,
@@ -14,4 +16,6 @@ module.exports = {
   pipe,
   removeDotFromFilepath,
   map,
+  flatten,
+  unspool,
 };

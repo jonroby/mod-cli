@@ -21,14 +21,13 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run test && npm run eslint && npm run prettier",
-      "pre-push": "npm run test && npm run eslint && npm run prettier"
+
     }
   },
   "scripts": {
     "test": "jest",
     "eslint": "./node_modules/.bin/eslint \"./src/**/*.js\"",
-    "prettier": "prettier --write \"./src/**/*.js\"",
+    "prettier": "prettier --write --trailing-comma es5 \"./src/**/*.js\"",
     "build": "./node_modules/.bin/babel src --out-dir dist/src --ignore \"src/**/__mocks__/*.js\",\"src/**/__tests__/*.js\" && cp package.json LICENSE dist",
     "prepublish": "npm run test && npm run eslint && npm run prettier && npm run build"
   },
