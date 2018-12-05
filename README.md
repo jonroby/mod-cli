@@ -47,14 +47,6 @@ to execute the transformations:
 
 We're ready to write our reset functionality. Enter the following command.
 
-```
-$ mod reset Counter
-    modified mod-react/src/redux/actions/constants.js
-    modified mod-react/src/redux/actions/creators.js
-    modified mod-react/src/components/Counter.js
-    modified mod-react/src/redux/reducers/counter.js
-```
-
 ![Screenshot](readme-images/mod_reset_counter_command.png)
 
 We can see that it made modifications to a number of files! White text indicates modifications,
@@ -153,8 +145,8 @@ We know that we'll want these values in our reducer store, so we can do that by
 
 `$ mod x {name,stargazers} -c Repo -r repo`
 
-This will add the keys to initial state in repo reducer and to mapStateToProps in
-the Repo component!
+This will add the keys, `name` and `stargazers` to `initialState` in the repo
+reducer and to `mapStateToProps` in the Repo component!
 
 ```
 // src/redux/reducers/repo.js
@@ -195,7 +187,6 @@ import Repo from "./Repo.jsx";
 ...
 ```
 
-Then in Repo:
 ```
 // src/components/Repo.jsx
 ...
@@ -224,3 +215,9 @@ return (
 ```
 
 Now you're ready! Try clicking and you'll see everything works!
+
+For more information on Mod React checkout the [repo](https://github.com/jonroby/mod-react)
+
+## How it works
+
+Coming soon...
