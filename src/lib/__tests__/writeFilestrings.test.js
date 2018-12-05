@@ -1,4 +1,4 @@
-const writeFileStrings = require("../writeFileStrings");
+const writeFileStrings = require("../writeFilestrings");
 
 jest.mock("fs");
 
