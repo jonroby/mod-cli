@@ -55,6 +55,8 @@ $ mod reset Counter
     modified mod-react/src/redux/reducers/counter.js
 ```
 
+![Screenshot](readme-images/mod_reset_counter_command.png)
+
 We can see that it made modifications to a number of files! It currently doesn't
 display which changes (coming soon), but here are the git diffs.
 
@@ -137,6 +139,8 @@ case statements, etc. Nor does it duplicate them. However, it currently won't
 display this to you (coming soon).
 
 ### Sagas
+
+![Screenshot](readme-images/async_command.png)
 
 ![Screenshot](readme-images/repo.png)
 ![Screenshot](readme-images/repos_saga.png)
