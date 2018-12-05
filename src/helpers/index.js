@@ -17,5 +17,5 @@ module.exports = {
   removeDotFromFilepath,
   map,
   flatten,
-  unspool
+  unspool,
 };

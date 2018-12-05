@@ -6,4 +6,3 @@ const getInput = mod => () => {
 };
 
 module.exports = getInput;
-

@@ -20,14 +20,14 @@ const mod = {
 };
 
 const main = pipe(
-    getInput(mod),
-    config.hook,
-    selectFiles(config),
-    findFiles,
-    genFilestrings(config.gens),
-    modFilestrings(config.parser, config.mods),
-    writeFilestrings,
-    printDiffs
-  );
+  getInput(mod),
+  config.hook,
+  selectFiles(config),
+  findFiles,
+  genFilestrings(config.gens),
+  modFilestrings(config.parser, config.mods),
+  writeFilestrings,
+  printDiffs
+);
 
 module.exports = main;

@@ -1,4 +1,4 @@
-const { pipe, map, flatten, unspool } = require('../helpers');
+const { pipe, map, flatten, unspool } = require("../helpers");
 
 const selectFiles = config => mod => {
   const command = mod.input[0];
@@ -17,7 +17,6 @@ const selectFiles = config => mod => {
     data,
   };
 };
-
 
 const _prepareInput = (input, config) => {
   // input.slice(1) are the the flags next to names

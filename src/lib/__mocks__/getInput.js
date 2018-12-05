@@ -1,4 +1,4 @@
-const getInput = mod => () => {
+const getInput = () => () => {
   const m = {
     // input: ["a", "-a", "a", "-c", "myAction", "-r", "myAction"],
     files: [],

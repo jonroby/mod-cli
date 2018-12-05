@@ -1,4 +1,4 @@
-const { fileExists } = require('../helpers');
+const { fileExists } = require("../helpers");
 
 const findFiles = mod => {
   return {
