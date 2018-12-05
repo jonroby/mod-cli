@@ -139,7 +139,7 @@ display this to you (coming soon).
 ### Sagas
 
 ![Screenshot](readme-images/repo.png)
-![Screenshot](readme-images/repos_sagas.png)
+![Screenshot](readme-images/repos_saga.png)
 
 ```
 const url = "https://fakerql.com/graphql";
