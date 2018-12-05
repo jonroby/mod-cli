@@ -136,6 +136,24 @@ One other feature is that the plugin won't write over previous actions, keys,
 case statements, etc. Nor does it duplicate them. However, it currently won't
 display this to you (coming soon).
 
+### Sagas
+
+![Screenshot](readme-images/repos.png)
+![Screenshot](readme-images/sagas_repos.png)
+
+```
+const url = "https://fakerql.com/graphql";
+const graphqlString = `
+{
+  Todo(id: 1) {
+    id
+    title
+    completed
+  }
+}
+`;
+```
+
 ### State
 
 Along with actions, you can also add state to your components and reducers.
