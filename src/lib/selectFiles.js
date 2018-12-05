@@ -30,8 +30,11 @@ const _prepareInput = (input, config) => {
   )(flags);
 
   // [n1 n2 n3] => [[n4, n5], n2, f3] => [n4, n5, n2, n3]
+
   const namesChained = pipe(
-    map((n, i) => (config.chains[flags[i]] ? [n, n] : n)),
+    map((n, i) =>
+      config.chains[flags[i]] ? config.chains[flags[i]].map(() => n) : n
+    ),
     flatten
   )(names);
 
