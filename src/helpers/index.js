@@ -4,7 +4,6 @@ const fileExists = require("./fileExists");
 const writeToFile = require("./writeToFile");
 const removeDotFromFilepath = require("./removeDotFromFilepath");
 const pipe = require("./pipe");
-const compose = require('./compose');
 const map = require("./map");
 const flatten = require("./flatten");
 const unspool = require("./unspool");
@@ -16,7 +15,6 @@ module.exports = {
   writeToFile,
   pipe,
   removeDotFromFilepath,
-  compose,
   map,
   flatten,
   unspool
