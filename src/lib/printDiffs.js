@@ -2,7 +2,6 @@ const shell = require("shelljs");
 const chalk = require("chalk");
 // const { NEW, MOD, UNMOD } = require('../constants');
 
-
 const printDiffs = mod => {
   // TODO: Add logic for modifications, new, deleting, etc.
   const colors = {

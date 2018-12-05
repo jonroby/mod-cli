@@ -1,5 +1,5 @@
 const flatten = arr => {
-  if (undefined) return [];
+  if (!arr) return [];
   return arr.reduce((prev, curr) => {
     if (Array.isArray(curr)) {
       return prev.concat(curr);

@@ -17,18 +17,9 @@ const mod = {
   files: [],
   data: {},
   diffs: {},
-  // config,
 };
 
-const main = () => {
-  // const input = getInput(mod);
-
-  // if (input.length === 0) {
-  //   shell.echo(config.man);
-  //   return;
-  // }
-
-  const m = pipe(
+const main = pipe(
     getInput(mod),
     config.hook,
     selectFiles(config),
@@ -38,8 +29,5 @@ const main = () => {
     writeFilestrings,
     printDiffs
   );
-  // m();
-  return m();
-};
 
 module.exports = main;

@@ -12,6 +12,7 @@ const updateDiffs = (diffs, filepath, fs1, fs2) => {
   } else {
     diffs[fp] = NEW;
   }
+  return diffs;
 };
 
 module.exports = updateDiffs;
