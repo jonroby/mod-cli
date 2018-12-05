@@ -85,9 +85,8 @@ if we wanted to generate something new? Enter the following command.
 ![Screenshot](readme-images/async_command.png)
 
 Unsurprisingly, the files that are colored green are new files. Again, files
-with white colored text indicates they have been modified. I don't want to go into
-the specifics of the command, but suffice it to say, that it is possible to
-generate files just as easily was it was to modify them.
+with white colored text indicates they have been modified. As you can see, it's
+just as easy to generate files as it was to modify them.
 
 Please note that components, reducers, sagas aren't required to share the same
 name. This syntax is just a convenience if they do. If you wanted to use
@@ -169,7 +168,7 @@ const mapStateToProps = state => ({
 If you're using the FakerQL endpoint, try this: (of course you wouldn't want your Todos
 held in state this way; this is only for the purpose of illustration):
 
-`$ mod x {id, title} -c Repo -r repo`
+`$ mod x {id,title} -c Repo -r repo` (warning: do not add a space between `id,` and `title`!)
 
 Now we'll want to include our new Repo component in the app, instead of the Counter.
 So in `App.jsx`, make the following changes.
@@ -218,6 +217,6 @@ Now you're ready! Try clicking and you'll see everything works!
 
 For more information on Mod React checkout the [repo](https://github.com/jonroby/mod-react)
 
-## How it works
+## Create your own plugin
 
 Coming soon...
