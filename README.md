@@ -19,7 +19,7 @@ And on enter, all that repetitious code is added to your project!
 
 Install nvm and then `nvm use 8.11.2`. No guarantees that anything will work if
 you're not using both. If you decide not to do this, and you encounter errors,
-you might try prefixing every `mod` command with `npx` (which you can get from,
+you might try prefixing every `mod` command with `npx` (which you can get from
 npm). You can also try adding the location of `mod` to your PATH.
 
 ## Example
