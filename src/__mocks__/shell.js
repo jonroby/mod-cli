@@ -1,4 +1,4 @@
-const shell = jest.mock('shelljs');
+const shell = jest.mock("shelljs");
 
 shell.echo = jest.fn();
 

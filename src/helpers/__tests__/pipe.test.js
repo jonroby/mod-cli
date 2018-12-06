@@ -10,7 +10,7 @@ describe("pipe", () => {
   test("returns STOP if any function returns STOP", () => {
     const result = pipe(
       a => a + 1,
-      b => STOP,
+      () => STOP,
       c => "Hello" + c
     )(1);
     expect(result).toBe(STOP);
