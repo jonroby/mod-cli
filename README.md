@@ -15,9 +15,16 @@ the plugin of your choice (or likely, you'll need to write your own). Then
 in the command line type `mod <your> <command> --with --options`.
 And on enter, all that repetitious code is added to your project!
 
+## Prerequisites
+
+Install nvm and then `nvm use 8.11.2`. No guarantees that anything will work if
+you're not using both. If you decide not to do this, and you encounter errors,
+you might try prefixing every `mod` command with `npx` (which you can get from
+npm). You can also try adding the location of `mod` to your PATH.
+
 ## Example
 
-To start clone the following repo.
+To start, clone the following repo.
 
 `$ git clone https://github.com/jonroby/mod-react.git`
 
@@ -76,6 +83,10 @@ which is already available from `this.props`.
 ```
 
 That's it! Check it out in the browser.
+
+If you forget anything, you can type `mod` for info on usage. It is not advised
+to deviate from the commands, as I haven't added extensive handling of user
+input.
 
 ## Example with Sagas
 
@@ -143,6 +154,7 @@ const graphqlString = `
 We know that we'll want these values in our reducer store, so we can do that by
 
 `$ mod x {name,stargazers} -c Repo -r repo`
+(warning: do not add a space between `name,` and `stargazers`!)
 
 This will add the keys, `name` and `stargazers` to `initialState` in the repo
 reducer and to `mapStateToProps` in the Repo component!
