@@ -1,3 +1,5 @@
-// const shell = jest.mock('shelljs');
+const shell = jest.mock('shelljs');
 
-// module.exports = shell;
+shell.echo = jest.fn();
+
+module.exports = shell;

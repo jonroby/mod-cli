@@ -1,9 +1,9 @@
 const shell = require("shelljs");
 const { STOP } = require("../constants");
 
-const validateInput = config => mod => {
+const validateInput = manPages => mod => {
   if (mod.input.length === 0) {
-    shell.echo(config);
+    shell.echo(manPages);
     return STOP;
   }
 
