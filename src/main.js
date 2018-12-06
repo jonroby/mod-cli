@@ -1,6 +1,7 @@
 const setup = require("./setup");
 const {
   getInput,
+  validateInput,
   selectFiles,
   findFiles,
   genFilestrings,
@@ -21,6 +22,7 @@ const mod = {
 
 const main = pipe(
   getInput(mod),
+  validateInput(config.man),
   config.hook,
   selectFiles(config),
   findFiles,

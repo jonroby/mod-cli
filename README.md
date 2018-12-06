@@ -17,6 +17,9 @@ And on enter, all that repetitious code is added to your project!
 
 ## Example
 
+First, you might need to install nvm and install 8.11.2. I can't guarantee you'll
+have identical results if you don't.
+
 To start clone the following repo.
 
 `$ git clone https://github.com/jonroby/mod-react.git`
@@ -143,6 +146,7 @@ const graphqlString = `
 We know that we'll want these values in our reducer store, so we can do that by
 
 `$ mod x {name,stargazers} -c Repo -r repo`
+(warning: do not add a space between `name,` and `stargazers`!)
 
 This will add the keys, `name` and `stargazers` to `initialState` in the repo
 reducer and to `mapStateToProps` in the Repo component!

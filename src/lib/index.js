@@ -1,4 +1,5 @@
 const getInput = require("./getInput");
+const validateInput = require("./validateInput");
 const selectFiles = require("./selectFiles");
 const findFiles = require("./findFiles");
 const genFilestrings = require("./genFilestrings");
@@ -10,6 +11,7 @@ const printDiffs = require("./printDiffs");
 // The only mutations allowed are to diffs.
 module.exports = {
   getInput,
+  validateInput,
   selectFiles,
   findFiles,
   genFilestrings,
