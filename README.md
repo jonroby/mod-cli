@@ -13,7 +13,7 @@ Whatever the reason, you're stuck rewriting code over... and over... and over ag
 Mod CLI is a tool that can help automate these tasks. You install it along with
 the plugin of your choice (or likely, you'll need to write your own). Then
 in the command line type `mod <your> <command> --with --options`.
-And on enter, all that repetitious code is added to your project!
+And on enter, all that repetitive code is added to your project!
 
 ## Prerequisites
 
