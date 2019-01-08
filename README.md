@@ -229,6 +229,27 @@ Now you're ready! Try clicking and you'll see everything works!
 
 For more information on Mod React checkout the [repo](https://github.com/jonroby/mod-react)
 
+```
+Mod CLI mod-react-plugin
+
+Usage: mod <command> <flag> <name>
+Sugar: mod <action> <component|reducer>
+
+command                         name
+  a - add Redux action(s)         user choice
+  x - add Redux state
+
+flag                            chains
+  -o: actionConstant              -a: [-o, -e]
+  -e: actionCreator
+  -c: component
+  -d: reducer                     -r: [-d, -t]
+  -t: rootReducer
+  -u: sagaGenerator               -s: [-u, -g, -q]
+  -g: rootSaga
+  -q: request
+```
+
 ## Create your own plugin
 
 Coming soon...
